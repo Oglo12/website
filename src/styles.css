@@ -51,12 +51,13 @@ button {
 	font-family: 'NerdFont', monospace;
 	font-weight: bold;
 	font-style: normal;
+	transition: transform 0.1s ease-in-out;
 }
 
 button:hover {
 	background-color: #8ec07c;
 	border-bottom: 8px solid #76a765;
-	margin-left: 40px;
+	transform: translateX(40px);
 }
 
 p {
