@@ -89,12 +89,15 @@ button:hover.move_down {
 p {
 	font-size: 20px;
 	max-width: 800px;
-	background-color: #282828;
+	background-color: #323232;
 	padding-left: 26px;
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-bottom: 20px;
 	border-radius: 10px;
+	font-family: 'NerdFont', monospace;
+	text-align: center;
+	border-bottom: 8px solid #292929;
 }
 
 p.about_me {
@@ -116,4 +119,5 @@ p.about_me {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	text-align: center;
+	border-bottom: 8px solid #332f2d;
 }
