@@ -71,6 +71,10 @@ p {
 	border-radius: 10px;
 }
 
+p.about_me {
+	max-width: 43.45%;
+}
+
 .welcome {
 	background-color: #3c3836;
 	margin-left: -18px;
