@@ -57,7 +57,33 @@ button {
 button:hover {
 	background-color: #8ec07c;
 	border-bottom: 8px solid #76a765;
+}
+
+button:hover.move_left {
+	transform: translateX(-40px);
+}
+
+button:hover.move_right {
 	transform: translateX(40px);
+}
+
+button:hover.move_up {
+	transform: translateY(-15px);
+}
+
+button:hover.move_down {
+	transform: translateY(15px);
+}
+
+.title_buttons {
+	position: fixed;
+	top: 0.5%;
+	left: 0px;
+	width: 99.5%;
+	z-index: 9999;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: flex-end;
 }
 
 p {
@@ -73,6 +99,11 @@ p {
 
 p.about_me {
 	max-width: 43.45%;
+}
+
+.hide_me {
+	display: none;
+	visibility: hidden;
 }
 
 .welcome {
