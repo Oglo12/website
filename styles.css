@@ -27,36 +27,25 @@
 }
 
 body {
-	background-color: #1d2021;
-	color: #ebdbb2;
 	padding-left: 10px;
 	font-family: 'NerdFont', monospace;
 	font-weight: bold;
 	font-style: normal;
-	background-image: url("background.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
 button {
-	background-color: #689d6a;
-	color: #282828;
 	padding: 10px 20px;
 	font-size: 20px;
 	border: none;
 	cursor: pointer;
 	margin: 10px 10px 10px 10px;
 	border-radius: 3px;
-	border-bottom: 8px solid #518554;
 	font-family: 'NerdFont', monospace;
 	font-weight: bold;
 	font-style: normal;
 	transition: transform 0.1s ease-in-out;
-}
-
-button:hover {
-	background-color: #8ec07c;
-	border-bottom: 8px solid #76a765;
 }
 
 button:hover.move_left {
@@ -89,7 +78,6 @@ button:hover.move_down {
 p {
 	font-size: 20px;
 	max-width: 800px;
-	background-color: #323232;
 	padding-left: 26px;
 	padding-top: 20px;
 	padding-right: 20px;
@@ -97,7 +85,6 @@ p {
 	border-radius: 10px;
 	font-family: 'NerdFont', monospace;
 	text-align: center;
-	border-bottom: 8px solid #292929;
 }
 
 p.about_me {
@@ -110,7 +97,6 @@ p.about_me {
 }
 
 .welcome {
-	background-color: #3c3836;
 	margin-left: -18px;
 	margin-right: -8px;
 	margin-top: -8px;
@@ -119,5 +105,4 @@ p.about_me {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	text-align: center;
-	border-bottom: 8px solid #332f2d;
 }

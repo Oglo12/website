@@ -1,0 +1,26 @@
+body {
+	background-image: url("background-light.png");
+	background-color: #ffffdb;
+	color: #282828;
+}
+
+button {
+	background-color: #26788a;
+	color: #282828;
+	border-bottom: 8px solid #076678;
+}
+
+button:hover {
+	background-color: #458588;
+	border-bottom: 8px solid #327376;
+}
+
+p {
+	background-color: #d5c4a1;
+	border-bottom: 8px solid #c1b18e;
+}
+
+.welcome {
+	background-color: #d0c1a5;
+	border-bottom: 8px solid #bdae93;
+}
