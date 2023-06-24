@@ -1,26 +1,26 @@
 body {
 	background-image: url("background-dark.png");
-	background-color: #1d2021;
-	color: #ebdbb2;
+	background-color: #1d2327;
+	color: #d3c6aa;
 }
 
 button {
-	background-color: #689d6a;
-	color: #282828;
-	border-bottom: 8px solid #518554;
+	background-color: #778f52;
+	color: #2d353b;
+	border-bottom: 8px solid #5d743e;
 }
 
 button:hover {
-	background-color: #8ec07c;
-	border-bottom: 8px solid #76a765;
+	background-color: #92ab6c;
+	border-bottom: 8px solid #788f57;
 }
 
 p {
-	background-color: #323232;
-	border-bottom: 8px solid #292929;
+	background-color: #2d353b;
+	border-bottom: 8px solid #252c32;
 }
 
 .welcome {
-	background-color: #3c3836;
-	border-bottom: 8px solid #332f2d;
+	background-color: #384046;
+	border-bottom: 8px solid #30373d;
 }
