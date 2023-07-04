@@ -41,7 +41,7 @@ button {
 	border: none;
 	cursor: pointer;
 	margin: 10px 10px 10px 10px;
-	border-radius: 3px;
+	border-radius: 5px;
 	font-family: 'NerdFont', monospace;
 	font-weight: bold;
 	font-style: normal;
@@ -82,7 +82,7 @@ p {
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-bottom: 20px;
-	border-radius: 10px;
+	border-radius: 5px;
 	font-family: 'NerdFont', monospace;
 	text-align: center;
 }
