@@ -55,7 +55,68 @@
       [4] Alright, how do I enable SysRQ?:<br><br>
 
       You can enable SysRQ with a simple command... sort of, see, you can enable it with this command as root: echo 1 > /proc/sys/kernel/sysrq<br>
-      PLEASE CONTINUE ME - TODO
+      But the issue is that this does not persist after a reboot! If you want
+      to have your changes stay even after rebooting, you will have to run this at startup.<br><br>
+
+      Depending on the distro, there are different ways to do this:<br><br>
+
+        Generic Distros: You can enable SysRQ even after reboot with this simple command as root: echo "kernel.sysrq = 1" >> /etc/sysctl.d/99-sysctl.conf<br><br>
+
+        NixOS: You can do this on NixOS by adding a Systemd service.
+        I recommend creating a new file in the same directory as configuration.nix called sysrq.nix,
+        and then importing it into configuration.nix:<br><br>
+
+          contents of sysrq.nix:<br><br>
+
+          {<br>
+            config,<br>
+            pkgs,<br>
+            ...<br>
+          }:<br>
+
+          {<br>
+            systemd.services.enable-sysrq = {<br>
+              description = "Enable SysRQ.";<br>
+              wantedBy = [ "multi-user.target" ];<br>
+              script = ''<br>
+                echo 1 > /proc/sys/kernel/sysrq<br>
+              '';<br>
+              serviceConfig = {<br>
+                User = "root";<br>
+                Type = "oneshot";<br>
+                RemainAfterExit = "yes";<br>
+              };<br>
+            };<br>
+          }<br>
+    </p>
+
+    <p>
+      [5] Okay... now, how to use SysRQ?:<br><br>
+
+      I mentioned earlier that all most people are gonna use SysRQ for is rebooting their machine properly if it freezes.
+      If you want to do this, you have to remember 6 letters: REISUB<br>
+      A good way to remember these is to remember: (R)eboot (E)ven (I)f (S)ystem (U)tterly (B)roken<br><br>
+
+      If you want to actually do this, what you need to do is hold down the ALT key, and the SysRQ key down at the same time.
+      Once you are holding them down, you want to press the first or next queued letter. And, you need to release the ALT and SysRQ
+      keys after every letter (command) pressed. So, you would end up holding down ALT + SysRQ 6 times during the REISUB sequence.
+      I repeat, you can not enter multiple letters without releasing your fingers from ALT + SysRQ, then putting them back down!<br><br>
+
+      What REISUB is doing:<br><br>
+
+      R: Turns off keyboard raw mode, and sets it to XLATE.<br>
+      E: Send a SIGTERM to all processes, except for init.<br>
+      I: Send a SIGKILL to all processes, except for init.<br>
+      S: Will attempt to sync all mounted filesystems.<br>
+      U: Will attempt to re-mount all mounted filesystems as read-only.<br>
+      B: Reboot!<br>
+    </p>
+
+    <p>
+      [6] Did you find this out yourself?:<br><br>
+
+      No, I watched a Chris Titus Tech video about it. Here is the link:<br>
+      https://youtu.be/ZiX327d8Ys0
     </p>
   </body>
 </html>
