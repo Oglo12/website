@@ -1,7 +1,10 @@
 body {
-	background-image: url("background-light.png");
 	background-color: #ffffdb;
 	color: #282828;
+}
+
+body:not(.no-oglo) {
+	background-image: url("background-light.png");
 }
 
 button {
@@ -20,7 +23,7 @@ p {
 	border-bottom: 8px solid #c1b18e;
 }
 
-.welcome {
+.banner {
 	background-color: #d0c1a5;
 	border-bottom: 8px solid #bdae93;
 }

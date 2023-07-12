@@ -28,6 +28,7 @@
 
 body {
 	padding-left: 10px;
+	padding-right: 10px;
 	font-family: 'NerdFont', monospace;
 	font-weight: bold;
 	font-style: normal;
@@ -48,19 +49,19 @@ button {
 	transition: transform 0.1s ease-in-out;
 }
 
-button:hover.move_left {
+button:hover.move-left {
 	transform: translateX(-40px);
 }
 
-button:hover.move_right {
+button:hover.move-right {
 	transform: translateX(40px);
 }
 
-button:hover.move_up {
+button:hover.move-up {
 	transform: translateY(-15px);
 }
 
-button:hover.move_down {
+button:hover.move-down {
 	transform: translateY(15px);
 }
 
@@ -77,18 +78,21 @@ button:hover.move_down {
 
 p {
 	font-size: 20px;
-	max-width: 800px;
 	padding-left: 26px;
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-bottom: 20px;
 	border-radius: 5px;
 	font-family: 'NerdFont', monospace;
-	text-align: center;
 }
 
-p.about_me {
+p.about {
 	max-width: 43.45%;
+}
+
+p.about,
+p.align-me {
+	text-align: center;
 }
 
 .hide_me {
@@ -96,9 +100,9 @@ p.about_me {
 	visibility: hidden;
 }
 
-.welcome {
+.banner {
 	margin-left: -18px;
-	margin-right: -8px;
+	margin-right: -18px;
 	margin-top: -8px;
 	padding-left: 30px;
 	padding-right: 30px;

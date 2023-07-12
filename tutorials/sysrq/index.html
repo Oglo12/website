@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Tutorials > SysRQ</title>
+
+    <link rel="icon" href="../../icon.png">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link id="themeStylesheet" rel="stylesheet" href="../../themes/dark.css">
+
+    <meta name="description" content="Using SysRQ to recover your system!">
+
+    <script src="../../scripts/theme.js"></script>
+  </head>
+
+  <body class="no-oglo">
+    <h1 class="banner">Tutorials > SysRQ</h1>
+
+    <p>
+      [1] What the heck is SysRQ?:<br><br>
+
+      SysRQ is a key on your keyboard. If you don't see it, chances are your PrtSc key doubles as it. The insert key and PrtSc/SysRQ key
+      are usually right next to each other, near where your numpad would be.
+    </p>
+
+    <p>
+      [2] What does SysRQ do exactly, and how can it save my system?:<br><br>
+
+      SysRQ is the magic key (that is even what it is called in the Linux kernel). You can use it to send messages directly to the kernel.<br>
+      Here are some situations where you might want to do that:<br><br>
+
+      1. Your system freezes, and your only option (not knowing about SysRQ ofc) is to hard turn off the machine.<br>
+      (I cannot think of any others at the moment, this is kind of what you would use SysRQ primarily for!)<br><br>
+
+      The reason you would not want to hard power off the machine is because that surprises the OS. If the OS is in the middle
+      of writing to disk for example, it could corrupt the filesystem (which is not good at all)! SysRQ comes in handy, because
+      it talks directly to the Linux kernel. So, even if everything on your system is locked up, you can still communicate
+      directly to the Linux kernel, with SysRQ. SysRQ allows you to reboot your computer correctly.
+    </p>
+
+    <p>
+      [3] Great! So... how do I use it?:<br><br>
+
+      In order to use it, we must make sure the system is configured to use it.<br>
+      You can make sure by reading the output of this command: cat /proc/sys/kernel/sysrq<br><br>
+
+      If the output is:<br><br>
+
+      1: Enabled, and you can skip to section 5.<br>
+      Not 1: Not enabled, and you have some work to do.
+    </p>
+
+    <p>
+      [4] Alright, how do I enable SysRQ?:<br><br>
+
+      You can enable SysRQ with a simple command... sort of, see, you can enable it with this command as root: echo 1 > /proc/sys/kernel/sysrq<br>
+      PLEASE CONTINUE ME - TODO
+    </p>
+  </body>
+</html>
