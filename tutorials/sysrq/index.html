@@ -9,13 +9,21 @@
     <link rel="stylesheet" href="../../styles.css">
     <link id="themeStylesheet" rel="stylesheet" href="../../themes/dark.css">
 
-    <meta name="description" content="Using SysRQ to recover your system!">
+    <meta name="description" content="Using SysRQ to properly reboot your system if something goes wrong!">
 
     <script src="../../scripts/theme.js"></script>
   </head>
 
   <body class="no-oglo">
     <h1 class="banner">Tutorials > SysRQ</h1>
+
+    <div class="banner-buttons-left">
+      <a href="../index.html" class="banner-button">
+        <button class="move-right">
+          Go Back
+        </button>
+      </a>
+    </div>
 
     <p>
       [1] What the heck is SysRQ?:<br><br>
@@ -60,34 +68,9 @@
 
       Depending on the distro, there are different ways to do this:<br><br>
 
-        Generic Distros: You can enable SysRQ even after reboot with this simple command as root: echo "kernel.sysrq = 1" >> /etc/sysctl.d/99-sysctl.conf<br><br>
+        Generic Distros: You can enable SysRQ even after reboot with this simple command as root: echo "kernel.sysrq = 1" >> /etc/sysctl.d/99-sysctl.conf<br>
 
-        NixOS: You can do this on NixOS by adding a Systemd service.
-        I recommend creating a new file in the same directory as configuration.nix called sysrq.nix,
-        and then importing it into configuration.nix:<br><br>
-
-          contents of sysrq.nix:<br><br>
-
-          {<br>
-            config,<br>
-            pkgs,<br>
-            ...<br>
-          }:<br>
-
-          {<br>
-            systemd.services.enable-sysrq = {<br>
-              description = "Enable SysRQ.";<br>
-              wantedBy = [ "multi-user.target" ];<br>
-              script = ''<br>
-                echo 1 > /proc/sys/kernel/sysrq<br>
-              '';<br>
-              serviceConfig = {<br>
-                User = "root";<br>
-                Type = "oneshot";<br>
-                RemainAfterExit = "yes";<br>
-              };<br>
-            };<br>
-          }<br>
+        NixOS: You can do this on NixOS by adding one line to configuration.nix in the global scope: boot.kernel.sysctl."kernel.sysrq" = 1;
     </p>
 
     <p>
