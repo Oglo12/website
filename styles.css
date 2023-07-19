@@ -106,6 +106,12 @@ p.align-me {
 	text-align: center;
 }
 
+mark {
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 5px;
+}
+
 .hide_me {
 	display: none;
 	visibility: hidden;

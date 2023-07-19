@@ -51,7 +51,7 @@
       [3] Great! So... how do I use it?:<br><br>
 
       In order to use it, we must make sure the system is configured to use it.<br>
-      You can make sure by reading the output of this command: cat /proc/sys/kernel/sysrq<br><br>
+      You can make sure by reading the output of this command: <mark>cat /proc/sys/kernel/sysrq</mark><br><br>
 
       If the output is:<br><br>
 
@@ -62,15 +62,15 @@
     <p>
       [4] Alright, how do I enable SysRQ?:<br><br>
 
-      You can enable SysRQ with a simple command... sort of, see, you can enable it with this command as root: echo 1 > /proc/sys/kernel/sysrq<br>
+      You can enable SysRQ with a simple command... sort of, see, you can enable it with this command as root: <mark>echo 1 > /proc/sys/kernel/sysrq</mark><br>
       But the issue is that this does not persist after a reboot! If you want
       to have your changes stay even after rebooting, you will have to run this at startup.<br><br>
 
       Depending on the distro, there are different ways to do this:<br><br>
 
-        Generic Distros: You can enable SysRQ even after reboot with this simple command as root: echo "kernel.sysrq = 1" >> /etc/sysctl.d/99-sysctl.conf<br>
+        Generic Distros: You can enable SysRQ even after reboot with this simple command as root: <mark>echo "kernel.sysrq = 1" >> /etc/sysctl.d/99-sysctl.conf</mark><br>
 
-        NixOS: You can do this on NixOS by adding one line to configuration.nix in the global scope: boot.kernel.sysctl."kernel.sysrq" = 1;
+        NixOS: You can do this on NixOS by adding one line to configuration.nix in the global scope: <mark>boot.kernel.sysctl."kernel.sysrq" = 1;</mark>
     </p>
 
     <p>
@@ -99,7 +99,7 @@
       [6] Did you find this out yourself?:<br><br>
 
       No, I watched a Chris Titus Tech video about it. Here is the link:<br>
-      https://youtu.be/ZiX327d8Ys0
+      <mark>https://youtu.be/ZiX327d8Ys0</mark>
     </p>
   </body>
 </html>
