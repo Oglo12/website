@@ -23,6 +23,11 @@ p {
 	border-bottom: 8px solid #c1b18e;
 }
 
+.header {
+	background-color: #ebdbb2;
+	color: #282828;
+}
+
 /* mark */
 
 .banner {

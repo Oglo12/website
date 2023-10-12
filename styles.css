@@ -33,7 +33,7 @@ body {
 	font-weight: bold;
 	font-style: normal;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: contain;
 }
 
 button {
@@ -89,19 +89,41 @@ button:hover.move-down {
 
 p {
 	font-size: 20px;
-	padding-left: 26px;
-	padding-top: 20px;
-	padding-right: 20px;
-	padding-bottom: 20px;
+	padding-left: 16px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
 	border-radius: 5px;
 	font-family: 'NerdFont', monospace;
 }
 
+.header {
+	padding-left: 16px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px 5px 0px 0px;
+	font-family: 'NerdFont', monospace;
+}
+
+.header,
+p.news,
 p.about {
 	max-width: 43.45%;
 }
 
+.header {
+	margin-bottom: 0px;
+}
+
 p.about,
+p.news {
+	margin-top: 0px;
+	border-radius: 0px 0px 5px 5px;
+}
+
+p.about,
+p.news,
 p.align-me {
 	text-align: center;
 }
