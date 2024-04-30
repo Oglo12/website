@@ -27,13 +27,16 @@
 }
 
 body {
-	padding-left: 10px;
-	padding-right: 10px;
+	margin: 0;
 	font-family: 'NerdFont', monospace;
 	font-weight: bold;
 	font-style: normal;
 	background-repeat: no-repeat;
 	background-size: contain;
+}
+
+main {
+    padding-inline: 18px;
 }
 
 button {
@@ -49,39 +52,23 @@ button {
 	transition: transform 0.1s ease-in-out;
 }
 
-button:hover.move-left {
+a:hover > button.move-left {
 	transform: translateX(-40px);
 }
 
-button:hover.move-right {
+a:hover > button.move-right {
 	transform: translateX(40px);
 }
 
-button:hover.move-up {
+a:hover > button.move-up {
 	transform: translateY(-15px);
 }
 
-button:hover.move-down {
+a:hover > button.move-down {
 	transform: translateY(15px);
 }
 
-.banner-buttons-right {
-	position: fixed;
-	top: 0.5%;
-	left: 0.5%;
-	width: 99%;
-	z-index: 9999;
-	display: flex;
-	flex-direction: row-reverse;
-	align-items: flex-end;
-}
-
 .banner-buttons-left {
-	position: fixed;
-	top: 0.5%;
-	left: 0.5%;
-	width: 99%;
-	z-index: 9999;
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -140,12 +127,21 @@ mark {
 }
 
 .banner {
-	margin-left: -18px;
-	margin-right: -18px;
-	margin-top: -8px;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	position: relative;
+	display: flex;
+	background-color: red;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
+	padding: 20px;
+	gap: 20px;
+}
+
+.banner h1 {
+    margin: 0;
+}
+
+.banner-button {
+    position: absolute;
+    right: 5px;
 }
