@@ -52,19 +52,19 @@ button {
 	transition: transform 0.1s ease-in-out;
 }
 
-button:hover.move-left {
+a:hover > button.move-left {
 	transform: translateX(-40px);
 }
 
-button:hover.move-right {
+a:hover > button.move-right {
 	transform: translateX(40px);
 }
 
-button:hover.move-up {
+a:hover > button.move-up {
 	transform: translateY(-15px);
 }
 
-button:hover.move-down {
+a:hover > button.move-down {
 	transform: translateY(15px);
 }
 
