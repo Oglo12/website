@@ -128,7 +128,6 @@ mark {
   display: block;
   margin: 1em auto;
   max-width: 80ch;
-  overflow: hidden;
 }
 
 .hide_me {
@@ -168,12 +167,14 @@ mark {
     top: 90%;
   }
 
+  .tutorial > p { font-size: 0.9em }
+
   .welcome-button {
     display: none;
   }
 
   body {
-    margin-bottom: 3.5em;
+    margin-bottom: 4.5em;
   }
 
   main {
