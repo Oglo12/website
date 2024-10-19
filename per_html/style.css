@@ -1,0 +1,58 @@
+@import url('themes/gruvbox_dark.css');
+
+* {
+    color: var(--foreground-color);
+}
+
+body {
+    background-color: var(--background-color);
+    padding: 10px 50px 0px 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p {
+    background-color: var(--element-background-color);
+    border-radius: 10px;
+    padding: 16px 20px 16px 20px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+tr {
+    background-color: var(--hue-background-color);
+}
+
+th {
+    color: var(--hue-foreground-color);
+}
+
+td {
+    background-color: var(--element-background-color);
+    padding: 6px 10px 6px 10px;
+}
+
+code {
+    background-color: var(--hue-background-color);
+    color: var(--hue-foreground-color);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 1px 4px 1px 4px;
+}
+
+a {
+    color: var(--link-color);
+}
+
+.title,
+.hide_me {
+    display: none;
+    visibility: hidden;
+}
