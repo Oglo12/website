@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tutorials&gt;sysrq.html</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">tutorials&gt;sysrq.html</h1>
+</header>
+<h2 id="what-the-heck-is-sysrq">[1] What the heck is SysRQ?</h2>
+<p>SysRQ is a key on your keyboard. If you don’t see it, chances are
+your PrtSc key doubles as it. The insert key and PrtSc/SysRQ key are
+usually right next to each other, near where your numpad would be.</p>
+<h2 id="what-does-sysrq-do-exactly-and-how-can-it-save-my-system">[2]
+What does SysRQ do exactly, and how can it save my system?</h2>
+<p>SysRQ is the magic key (that is even what it is called in the Linux
+kernel). You can use it to send messages directly to the kernel. Here
+are some situations where you might want to do that:</p>
+<ol type="1">
+<li>Your system freezes, and your only option (not knowing about SysRQ
+ofc) is to hard turn off the machine. (I cannot think of any others at
+the moment, this is kind of what you would use SysRQ primarily
+for!)</li>
+</ol>
+<p>The reason you would not want to hard power off the machine is
+because that surprises the OS. If the OS is in the middle of writing to
+disk for example, it could corrupt the filesystem (which is not good at
+all)! SysRQ comes in handy, because it talks directly to the Linux
+kernel. So, even if everything on your system is locked up, you can
+still communicate directly to the Linux kernel, with SysRQ. SysRQ allows
+you to reboot your computer correctly.</p>
+<h2 id="great-so-how-do-i-use-it">[3] Great! So… how do I use it?</h2>
+<p>In order to use it, we must make sure the system is configured to use
+it. You can make sure by reading the output of this command:
+<code>cat /proc/sys/kernel/sysrq</code></p>
+<p>If the output is:</p>
+<p>1: Enabled, and you can skip to section 5.<br />
+Not 1: Not enabled, and you have some work to do.</p>
+<h2 id="alright-how-do-i-enable-sysrq">[4] Alright, how do I enable
+SysRQ?</h2>
+<p>You can enable SysRQ with a simple command… sort of, see, you can
+enable it with this command as root:
+<code>echo 1 &gt; /proc/sys/kernel/sysrq</code> But the issue is that
+this does not persist after a reboot! If you want to have your changes
+stay even after rebooting, you will have to run this at startup.</p>
+<p>Depending on the distro, there are different ways to do this:</p>
+<p>Generic Distros: You can enable SysRQ even after reboot with this
+simple command as root:
+<code>echo "kernel.sysrq = 1" &gt;&gt; /etc/sysctl.d/99-sysctl.conf</code><br />
+NixOS: You can do this on NixOS by adding one line to configuration.nix
+in the global scope:
+<code>boot.kernel.sysctl."kernel.sysrq" = 1;</code></p>
+<h2 id="okay-now-how-to-use-sysrq">[5] Okay… now, how to use SysRQ?</h2>
+<p>I mentioned earlier that all most people are gonna use SysRQ for is
+rebooting their machine properly if it freezes. If you want to do this,
+you have to remember 6 letters: REISUB A good way to remember these is
+to remember: [R]eboot [E]ven [I]f [S]ystem [U]tterly [B]roken</p>
+<p>If you want to actually do this, what you need to do is hold down the
+ALT key, and the SysRQ key down at the same time. Once you are holding
+them down, you want to press the first or next queued letter. And, you
+need to release the ALT and SysRQ keys after every letter (command)
+pressed. So, you would end up holding down ALT + SysRQ 6 times during
+the REISUB sequence. I repeat, you can not enter multiple letters
+without releasing your fingers from ALT + SysRQ, then putting them back
+down!</p>
+<p>What REISUB is doing:</p>
+<p>R: Turns off keyboard raw mode, and sets it to XLATE.<br />
+E: Send a SIGTERM to all processes, except for init.<br />
+I: Send a SIGKILL to all processes, except for init.<br />
+S: Will attempt to sync all mounted filesystems.<br />
+U: Will attempt to re-mount all mounted filesystems as read-only.<br />
+B: Reboot!</p>
+<h2 id="did-you-find-this-out-yourself">[6] Did you find this out
+yourself?</h2>
+<p>No, I watched a <a href="https://youtu.be/ZiX327d8Ys0">Chris Titus
+Tech video about it</a>.</p>
+<p>Definitely one of his few good videos.</p>
+</body>
+</html>
