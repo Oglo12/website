@@ -69,6 +69,10 @@ table {
     margin-top: 20px;
 }
 
+th {
+    border-radius: 10px 10px 0px 0px;
+}
+
 tr {
     background-color: var(--hue-background-color);
 }
