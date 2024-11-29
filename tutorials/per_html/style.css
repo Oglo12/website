@@ -47,6 +47,13 @@
     font-family: "NerdFont";
 }
 
+::selection,
+::-moz-selection,
+::-webkit-selection {
+    background: var(--selection-background-color);
+    color: var(--selection-foreground-color);
+}
+
 body {
     background-image: url("background_mask.svg");
     background-color: var(--background-color);
