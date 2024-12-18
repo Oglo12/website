@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>OgloTheNerd's Website (fultiples&gt;network_spec.html)</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="./PER_HTML/style.css" />
+  <link rel="icon" type="image/png" href="./PER_HTML/icon.png">
+  <meta name="description" content="Hi, I'm OgloTheNerd! I am a low-level programmer and software developer!
+  I am best known for my YouTube channel about Linux and programming!
+  I have a passion for teaching people, and also for learning about how
+  things such as operating systems and CPUs work under the hood.
+
+  If you want to contact me, you can send me an email (address on site).
+  I'd be happy to help with anything or just answer questions!">
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">OgloTheNerd's Website
+(fultiples&gt;network_spec.html)</h1>
+</header>
+<h1 id="fultiples---network-specification">Fultiples - Network
+Specification</h1>
+<p>This document will go over the Fultiples network specification. The
+purpose of this specification is to make it so clients and servers
+designed for Fultiples can connect and talk to each other no matter what
+programming language or design they use.</p>
+<h1
+id="current-specification-version-this-changes-with-each-new-change">Current
+Specification Version (This Changes With Each New Change)</h1>
+<blockquote>
+<p>This number is always a positive integer.</p>
+</blockquote>
+<p>Version: <code>0</code></p>
+<h1 id="communication-model">Communication Model</h1>
+<p>Fultiples (multiplayer over a network) functions on a client and
+server model. The clients connect to a server and send messages such as
+where they made their move, and the server sends back messages telling
+the client various things like whether or not a move succeeded or
+failed, or if it is their turn or not.</p>
+<h1 id="how-to-read-clientserver-specifications-in-this-document">How To
+Read Client/Server Specifications (In This Document)</h1>
+<ul>
+<li><p>First off, there are the global specifications like the data
+types, and then there are the specific client and server
+specifications.</p></li>
+<li><p>The way you read the client/server specifications is that they
+will have a list of messages in a table that contains the name, opcode,
+and carried data (if any).</p></li>
+<li><p>The simplest way I can explain how this table would translate to
+code is as a tagged union. The name is the tag, and the carried data is
+the union data. Don’t worry about the opcode in this explanation, since
+it is for serialization and deserialization over the network (since the
+network only expects bytes, not multi-byte data structures).</p></li>
+<li><p>Message opcodes are 1 byte in size.</p></li>
+<li><p>Opcodes are written in hexadecimal notation.</p></li>
+</ul>
+<h1 id="specification-network-datatypes">Specification (Network
+Datatypes)</h1>
+<ul>
+<li><p>Number types are either a <code>u</code> or an <code>i</code>
+followed by their size in bits. The <code>u</code> is for unsigned, and
+the <code>i</code> is for signed. So for example, a byte is:
+<code>u8</code></p></li>
+<li><p>In the layout for each type, the parameters and their type are
+written like this:
+<code>&lt;PARAMETER NAME&gt;:&lt;PARAMETER TYPE&gt;</code></p></li>
+<li><p>When serializing to individual bytes to be sent over the network,
+integers are serialized in little-endian format.</p></li>
+</ul>
+<div class="table_div_transform">
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 38%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Layout</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vec2</td>
+<td><code>x:u16</code> <code>y:u16</code></td>
+<td>A type that stores 2 integer parameters big enough for sizes or
+positions.</td>
+</tr>
+<tr class="even">
+<td>ClientConnectInfo</td>
+<td><code>spec_version:u32</code></td>
+<td>A data structure that stores information about the connection coming
+from the client to the server.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="serialization-deserialization">Serialization &amp;
+Deserialization</h1>
+<h3 id="serialization">Serialization</h3>
+<ul>
+<li><p>Serialization and deserialization in this specification are used
+for turning messages which at the end of the day are represented as
+multi-byte structures into raw bytes which can be sent over the network,
+and then recovering the original message from those bytes once received
+on the receiver end.</p></li>
+<li><p>Messages are serialized by creating a new buffer (in modern
+programming languages, this would be a vector) for the bytes, and then
+pushing the opcode corresponding to the message to that said buffer. If
+that message has carried data associated with it, the serialized bytes
+of the carried data are then appended to the end of the buffer.</p></li>
+<li><p>Carried data is serialized by creating a buffer of bytes (for the
+carried data bytes), taking the layout (see network datatypes
+specification section), and appending the serialized bytes from the
+layout types/data to the buffer. This is a recursive operation since the
+layout can contain types which in themselves contain a multi-byte
+layout.</p></li>
+</ul>
+<h3 id="deserialization">Deserialization</h3>
+<ul>
+<li><p>Messages are deserialized by reading a byte from the stream, and
+interpreting that as an 8-bit opcode.</p></li>
+<li><p>If the decoded message is meant to carry data with it, the data
+is deserialized from the stream. If you are familiar with recursive
+decent parsers, this process will sound familiar. If you were to think
+of this as a recursive decent parser (which it is), the token stream is
+a stream of bytes from the network.</p></li>
+<li><p>If this explanation is still a bit confusing to you, keep in mind
+that any algorithms implemented for serialization are essentially just
+the deserialization algorithms implemented in reverse, since
+deserializing is the act of reversing a serialization process.</p></li>
+</ul>
+<h1 id="specification-client">Specification (Client)</h1>
+<h3 id="message-table">Message Table</h3>
+<div class="table_div_transform">
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 50%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Message</th>
+<th>Opcode</th>
+<th>Carried Data</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Connect</td>
+<td>0x0</td>
+<td><code>connect_info:ClientConnectInfo</code></td>
+<td>Message sent when the client is connecting to a server.</td>
+</tr>
+<tr class="even">
+<td>Disconnect</td>
+<td>0x1</td>
+<td></td>
+<td>Message sent when the client is disconnecting from the server.</td>
+</tr>
+<tr class="odd">
+<td>Shade</td>
+<td>0x2</td>
+<td><code>cell_position:Vec2</code></td>
+<td>Message sent when the client is making a move and choosing a cell on
+the board to shade.</td>
+</tr>
+<tr class="even">
+<td>GetSize</td>
+<td>0x3</td>
+<td></td>
+<td>Message sent when the client wants to know the board size.</td>
+</tr>
+<tr class="odd">
+<td>GetCell</td>
+<td>0x4</td>
+<td><code>cell_position:Vec2</code></td>
+<td>Message sent when the client wants to know the value of a given cell
+on the board.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="specification-server">Specification (Server)</h1>
+<h3 id="message-table-1">Message Table</h3>
+<div class="table_div_transform">
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 10%" />
+<col style="width: 45%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Message</th>
+<th>Opcode</th>
+<th>Carried Data</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Kicked</td>
+<td>0x0</td>
+<td></td>
+<td>Message sent to a client when it is kicked from the server.</td>
+</tr>
+<tr class="even">
+<td>ConnectionAccepted</td>
+<td>0x1</td>
+<td></td>
+<td>Message sent to clients with valid connection requests.</td>
+</tr>
+<tr class="odd">
+<td>ConnectionRejected</td>
+<td>0x2</td>
+<td></td>
+<td>Message sent to clients with invalid connection requests.</td>
+</tr>
+<tr class="even">
+<td>Winner</td>
+<td>0x3</td>
+<td></td>
+<td>Message sent to the winner’s client.</td>
+</tr>
+<tr class="odd">
+<td>Loser</td>
+<td>0x4</td>
+<td></td>
+<td>Message sent to the loser’s client.</td>
+</tr>
+<tr class="even">
+<td>ClientTurn</td>
+<td>0x5</td>
+<td></td>
+<td>Message sent to the current turn’s client once it is their
+turn.</td>
+</tr>
+<tr class="odd">
+<td>NotClientTurn</td>
+<td>0x6</td>
+<td></td>
+<td>Message sent to the other clients who don’t currently have the turn
+(this is just to notify them in case they had the previous turn or
+something like that)</td>
+</tr>
+<tr class="even">
+<td>TurnSuccess</td>
+<td>0x7</td>
+<td></td>
+<td>Message sent to a client when their turn succeeded.</td>
+</tr>
+<tr class="odd">
+<td>TurnFail</td>
+<td>0x8</td>
+<td></td>
+<td>Message sent to a client when their turn failed.</td>
+</tr>
+<tr class="even">
+<td>BoardSize</td>
+<td>0x9</td>
+<td><code>size:Vec2</code></td>
+<td>Message sent to a client telling them what the board size is.</td>
+</tr>
+<tr class="odd">
+<td>BoardCell</td>
+<td>0xA</td>
+<td><code>cell_position:Vec2</code> <code>value:i32</code></td>
+<td>Message sent to a client telling them what the value of a given cell
+is.</td>
+</tr>
+<tr class="even">
+<td>TurnTimeLimit</td>
+<td>0xB</td>
+<td><code>seconds:u16</code></td>
+<td>Message sent to a client when there are turn time limits (in
+seconds). If this message is never sent, there are no turn time
+limits.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
