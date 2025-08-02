@@ -94,20 +94,20 @@ integers are serialized in little-endian format.</p></li>
 <col style="width: 25%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Name</th>
 <th>Layout</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Vec2</td>
 <td><code>x:u16</code> <code>y:u16</code></td>
 <td>A type that stores 2 integer parameters big enough for sizes or
 positions.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>ClientConnectInfo</td>
 <td><code>spec_version:u32</code></td>
 <td>A data structure that stores information about the connection coming
@@ -162,7 +162,7 @@ deserializing is the act of reversing a serialization process.</p></li>
 <col style="width: 19%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Message</th>
 <th>Opcode</th>
 <th>Carried Data</th>
@@ -170,32 +170,32 @@ deserializing is the act of reversing a serialization process.</p></li>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Connect</td>
 <td>0x0</td>
 <td><code>connect_info:ClientConnectInfo</code></td>
 <td>Message sent when the client is connecting to a server.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Disconnect</td>
 <td>0x1</td>
 <td></td>
 <td>Message sent when the client is disconnecting from the server.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Shade</td>
 <td>0x2</td>
 <td><code>cell_position:Vec2</code></td>
 <td>Message sent when the client is making a move and choosing a cell on
 the board to shade.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>GetSize</td>
 <td>0x3</td>
 <td></td>
 <td>Message sent when the client wants to know the board size.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GetCell</td>
 <td>0x4</td>
 <td><code>cell_position:Vec2</code></td>
@@ -216,7 +216,7 @@ on the board.</td>
 <col style="width: 17%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Message</th>
 <th>Opcode</th>
 <th>Carried Data</th>
@@ -224,44 +224,44 @@ on the board.</td>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Kicked</td>
 <td>0x0</td>
 <td></td>
 <td>Message sent to a client when it is kicked from the server.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>ConnectionAccepted</td>
 <td>0x1</td>
 <td></td>
 <td>Message sent to clients with valid connection requests.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>ConnectionRejected</td>
 <td>0x2</td>
 <td></td>
 <td>Message sent to clients with invalid connection requests.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Winner</td>
 <td>0x3</td>
 <td></td>
 <td>Message sent to the winner’s client.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Loser</td>
 <td>0x4</td>
 <td></td>
 <td>Message sent to the loser’s client.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>ClientTurn</td>
 <td>0x5</td>
 <td></td>
 <td>Message sent to the current turn’s client once it is their
 turn.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>NotClientTurn</td>
 <td>0x6</td>
 <td></td>
@@ -269,32 +269,32 @@ turn.</td>
 (this is just to notify them in case they had the previous turn or
 something like that)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>TurnSuccess</td>
 <td>0x7</td>
 <td></td>
 <td>Message sent to a client when their turn succeeded.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>TurnFail</td>
 <td>0x8</td>
 <td></td>
 <td>Message sent to a client when their turn failed.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>BoardSize</td>
 <td>0x9</td>
 <td><code>size:Vec2</code></td>
 <td>Message sent to a client telling them what the board size is.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BoardCell</td>
 <td>0xA</td>
 <td><code>cell_position:Vec2</code> <code>value:i32</code></td>
 <td>Message sent to a client telling them what the value of a given cell
 is.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>TurnTimeLimit</td>
 <td>0xB</td>
 <td><code>seconds:u16</code></td>
