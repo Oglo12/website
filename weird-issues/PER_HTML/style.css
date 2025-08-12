@@ -1,0 +1,186 @@
+@import url('themes/everforest_medium_dark.css');
+
+@font-face {
+  font-family: "NerdFont";
+  src: url("fonts/JetBrainsMonoNerdFont-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NerdFont";
+  src: url("fonts/JetBrainsMonoNerdFont-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NerdFont";
+  src: url("fonts/JetBrainsMonoNerdFont-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "NerdFontMono";
+  src: url("fonts/JetBrainsMonoNerdFontMono-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NerdFontMono";
+  src: url("fonts/JetBrainsMonoNerdFontMono-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NerdFontMono";
+  src: url("fonts/JetBrainsMonoNerdFontMono-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+* {
+    color: var(--foreground-color);
+    font-family: "NerdFont";
+}
+
+::selection,
+::-moz-selection,
+::-webkit-selection {
+    background: var(--selection-background-color);
+    color: var(--selection-foreground-color);
+}
+
+body {
+    background-image: url("background_mask.svg");
+    background-color: var(--background-color);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100%;
+    padding: 0.5% 2.6%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+.big_code,
+p {
+    background: linear-gradient(to top, var(--element-background-color), color-mix(in srgb, var(--element-background-color) 92%, #ffffff 8%));
+    border-radius: 10px;
+    padding: 16px 20px 16px 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+ol {
+    background: linear-gradient(to top, var(--hue-background-color), color-mix(in srgb, var(--hue-background-color) 92%, #ffffff 8%));
+    border-radius: 10px;
+}
+
+ol li::marker {
+    color: var(--hue-foreground-color);
+    font-weight: bold;
+    font-family: "NerdFontMono";
+}
+
+table {
+    border-spacing: 0px;
+}
+
+tr {
+    background: linear-gradient(to top, var(--hue-background-color), color-mix(in srgb, var(--hue-background-color) 92%, #ffffff 8%));
+}
+
+th {
+    color: var(--hue-foreground-color);
+}
+
+td {
+    background-color: var(--element-background-color);
+    padding: 6px 10px 6px 10px;
+}
+
+tr.even td {
+    background-color: var(--element-background-lighter-color);
+}
+
+code {
+    background: linear-gradient(to top, var(--hue-background-color), color-mix(in srgb, var(--hue-background-color) 92%, #ffffff 8%));
+    color: var(--hue-foreground-color);
+    font-weight: bold;
+    font-family: "NerdFontMono";
+    border-radius: 5px;
+    padding: 1px 4px 1px 4px;
+}
+
+.big_code code {
+    background: transparent;
+}
+
+a {
+    color: var(--link-color);
+}
+
+.fit_p_div {
+    min-width: fit-content;
+    width: fit-content;
+}
+
+.image_div,
+.table_div_transform,
+.table_div {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    min-width: fit-content;
+    width: fit-content;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.image_div figure {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    min-height: fit-content;
+    height: fit-content;
+}
+
+.image_div figure figcaption {
+    padding: 16px 20px 16px 20px;
+    background: var(--element-background-color);
+}
+
+.image_div img {
+    margin: 0px;
+    padding: 0px;
+}
+
+.table_div_transform,
+.table_div {
+    margin-top: 20px;
+}
+
+.table_div_transform {
+    transition: transform 0.6s ease;
+    transform-origin: center center;
+}
+
+.table_div_transform:hover {
+    transform: translateX(8px);
+}
+
+.title,
+.hide_me {
+    display: none;
+    visibility: hidden;
+}
