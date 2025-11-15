@@ -47,6 +47,15 @@ solution because MPD stopped playing music, and I looked in my config
 only to see that it was using PulseAudio instead of Pipewire! So
 naturally I thought that this might have something to do with my video
 playback issue! :D</p>
+<h2 id="minecraft-not-detecting-mouse-movement-under-wayland">Minecraft
+Not Detecting Mouse Movement Under Wayland</h2>
+<p>I had this issue where I would launch Minecraft, try to move around,
+and the rotation of my camera would only update when I moved the cursor
+out of the window and then back into the window. The fix was to add
+<code>-Dorg.lwjgl3.renderer=wayland</code> to my JVM arguments for
+Minecraft. If you are curious about what version of Minecraft I was
+using, it was Minecraft Beta b1.7.3 with the <a
+href="https://betterthanadventure.net">BTA</a> mod.</p>
 <h1 id="hardware-issues">Hardware Issues</h1>
 <h2 id="pc38x-headset-not-working">PC38X Headset Not Working</h2>
 <p>I remember getting this headset and loving how it felt on my head,
