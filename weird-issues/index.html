@@ -70,5 +70,22 @@ complain. ¯\_(ツ)_/¯</p>
 <code>MOD + &lt;KEY&gt;</code> Not Working</h2>
 <p>I don’t know what causes it, but the solution seems to just be
 holding down <code>FN + M</code> for around 3-5 seconds.</p>
+<h1 id="software-issues">Software Issues</h1>
+<h2 id="disabling-omnibox-url-bar-suggestions">Disabling Omnibox (URL
+Bar) Suggestions</h2>
+<p>It turns out that stock Chromium and many Chromium-based browsers do
+not let you turn off omnibox suggestions fully. In order to turn them
+off, I had to add a search engine and not enable the search engine
+search suggestions, and then I had to head over to
+<code>chrome://flags</code> and search for “omnibox” in the search bar.
+What I wanted was <code>Omnibox Autocomplete Filtering</code>, or
+formally known as <code>#omnibox-autocomplete-filtering</code>. I then
+set that flag to <code>Search suggestions only</code> and restarted the
+browser. If you want a browser that allows this in the settings and
+actually allows you to FULLY turn off ANY suggestion pop-ups under the
+omnibar completely, use <a href="https://brave.com">Brave</a>. I
+personally wrote this because I want to move away from Brave, and I am
+trying a browser called <a
+href="https://helium.computer">Helium</a>.</p>
 </body>
 </html>
