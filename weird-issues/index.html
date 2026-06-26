@@ -99,5 +99,14 @@ omnibar completely, use <a href="https://brave.com">Brave</a>. I
 personally wrote this because I want to move away from Brave, and I am
 trying a browser called <a
 href="https://helium.computer">Helium</a>.</p>
+<h2 id="gajim-using-hybrid-between-system-and-vendored-gtk-theme">Gajim
+Using Hybrid Between System And Vendored GTK Theme</h2>
+<p>I don’t think I have the Adwaita installed, but simply launching
+Gajim with environment variable <code>GTK_THEME</code> set to
+<code>Adwaita</code> fixed the issue. I made this stick (until the
+package manager overwrites the file) by opening the
+<code>.desktop</code> file for Gajim and turning all the
+<code>Exec=...</code> entries into
+<code>Exec=env GTK_THEME=Adwaita ...</code> entries.</p>
 </body>
 </html>
