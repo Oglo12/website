@@ -1,0 +1,11 @@
+:root {
+    --background-color: #282828;
+    --foreground-color: #D3CEC0;
+    --element-background-color: #383838;
+    --element-background-lighter-color: #484848;
+    --hue-background-color: #D97956;
+    --hue-foreground-color: #282828;
+    --link-color: #75B8C9;
+    --selection-background-color: #D97956;
+    --selection-foreground-color: #282828;
+}
